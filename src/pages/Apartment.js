@@ -1,5 +1,9 @@
 import React from 'react';
 
-export default function Apartment() {
-  return <div></div>;
-}
+import Reviews from '../components/apartmens/Reviews';
+
+const Apartment = () => {
+  return <Reviews />;
+};
+
+export default Apartment;

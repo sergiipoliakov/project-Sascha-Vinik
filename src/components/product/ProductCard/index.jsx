@@ -10,7 +10,7 @@ const ProductCard = ({ imgSrc, price, rating, description }) => {
   return (
     <section className={styles.card}>
       <div className={styles.cardInner}>
-        <img className={styles.photo} src={imgSrc} />
+        <img className={styles.photo} src={imgSrc} alt="weqr" />
         <div className={styles.content}>
           {hasHightRating && 'Топ продаж'}
           <p>{description}</p>

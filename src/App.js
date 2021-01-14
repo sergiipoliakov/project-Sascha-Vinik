@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductList from './components/product/ProductList';
 import Container from './components/UI/Container';
-import ComponentWithState from './components/ComponentWithState';
+
+import ApartmentPage from './pages/Apartment';
 import './App.css';
 
 const mockData = [
@@ -46,7 +47,8 @@ const mockData = [
 function App() {
   return (
     <Container>
-      <ComponentWithState />
+      <ApartmentPage />
+
       <ProductList items={mockData} />
     </Container>
   );

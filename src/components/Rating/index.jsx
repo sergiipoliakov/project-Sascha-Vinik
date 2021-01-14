@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './rating.module.css';
+import svgPath from './svg/foo.svg';
 
 const Rating = ({ rating, limit }) => {
   const coloredRatingWidth = (rating / limit) * 100 + '%';
-  let emptyStarslist = [];
+  let emptyStarsList = [];
   let coloredStarsList = [];
-  for (let i = 0; i < limit; i += 1) {
-    emptyStarslist.push(
+
+  for (let i = 0; i < limit; i++) {
+    emptyStarsList.push(
       <img
         key={i}
         className={styles.star}
@@ -25,11 +27,12 @@ const Rating = ({ rating, limit }) => {
     );
   }
 
-  const EmptyStars = () => emptyStarslist;
+  const EmptyStars = () => emptyStarsList;
   const ColoredStars = () => coloredStarsList;
 
   return (
     <div className={styles.rating}>
+      <img src={svgPath} alt="" />
       <div className={styles.emptyStars}>
         <EmptyStars />
         <div
@@ -44,7 +47,7 @@ const Rating = ({ rating, limit }) => {
 };
 
 Rating.defaultProps = {
-  limit: 8,
+  limit: 5,
 };
 
 Rating.propTypes = {
