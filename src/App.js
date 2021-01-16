@@ -1,8 +1,11 @@
 import React from 'react';
-import ProductList from './components/product/ProductList';
-import Container from './components/UI/Container';
+// import ProductList from './components/product/ProductList';
+// import Container from './components/UI/Container';
 
-import ApartmentPage from './pages/Apartment';
+// import ApartmentPage from './pages/Apartment';
+import Login from './components/auth/login';
+import Registration from './components/auth/registration';
+import Footer from './components/footer';
 import './App.css';
 
 const mockData = [
@@ -46,11 +49,14 @@ const mockData = [
 
 function App() {
   return (
-    <Container>
-      <ApartmentPage />
+    <>
+      <Login />
+      <Registration />
+      <Footer />
+      {/* <ApartmentPage /> */}
 
-      <ProductList items={mockData} />
-    </Container>
+      {/* <ProductList items={mockData} /> */}
+    </>
   );
 }
 
