@@ -17,7 +17,6 @@ export default class index extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.formData);
   };
 
   handleInputChange = e => {
