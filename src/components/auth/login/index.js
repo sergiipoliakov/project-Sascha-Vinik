@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import AuthCard from '../auth-card';
 import Input from '../../UI/input';
 import styles from './Login.module.css';

@@ -1,5 +1,6 @@
 @value colors: '../../../assets/styles/variables/colors.css';
 @value mainColor from colors;
+
 .button {
   background: mainColor;
   border: 1px solid mainColor;

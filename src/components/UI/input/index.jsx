@@ -40,7 +40,7 @@ Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
-  className: '',
+  className: PropTypes.string,
 };
 
 export default Input;

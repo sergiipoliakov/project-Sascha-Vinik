@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './AuthSection.module.css';
 
 function AuthSection({ children }) {
   return <section className={styles.section}>{children}</section>;
 }
 
-AuthSection.propTypes = {};
+// AuthSection.propTypes = {};
 
 export default AuthSection;
