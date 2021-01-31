@@ -1,9 +1,10 @@
 import PropTypes, { string } from 'prop-types';
 import styles from './input.module.css';
+import { nanoid } from 'nanoid';
 
 function Input(props) {
   const { name, type, label, className, ...restProps } = props;
-  const id = Date.now();
+  const id = nanoid();
   const classList = [className, styles.inputWrapper].join(' ');
   console.log(classList);
 
@@ -29,7 +30,7 @@ Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
-  className: '',
+  className: PropTypes.string,
 };
 
 export default Input;

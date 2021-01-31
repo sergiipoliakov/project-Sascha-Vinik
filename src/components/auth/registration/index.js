@@ -37,6 +37,7 @@ export default class index extends Component {
             <Input
               name="name"
               placeholder="name"
+              autoComplete="userName"
               onChange={this.handleInputChange}
               className={styles.authInput}
             />
@@ -44,6 +45,7 @@ export default class index extends Component {
               name="email"
               type="email"
               placeholder="email"
+              autoComplete="user-email"
               onChange={this.handleInputChange}
               className={styles.authInput}
             />
@@ -51,6 +53,7 @@ export default class index extends Component {
               name="password"
               type="password"
               placeholder="password"
+              autoComplete="new-password"
               onChange={this.handleInputChange}
               className={styles.authInput}
             />
@@ -58,6 +61,7 @@ export default class index extends Component {
               name="confirmPassword"
               type="password"
               placeholder="confirmPassword"
+              autoComplete="new-password"
               onChange={this.handleInputChange}
               className={styles.authInput}
             />

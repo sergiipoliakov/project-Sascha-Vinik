@@ -37,6 +37,7 @@ export default class index extends Component {
               name="login"
               type="login"
               placeholder="login"
+              autoComplete="userName"
               onChange={this.handleInputChange}
               className={styles.authInput}
             />
@@ -44,6 +45,7 @@ export default class index extends Component {
               name="password"
               type="password"
               placeholder="password"
+              autoComplete="new-password"
               onChange={this.handleInputChange}
               className={styles.authInput}
             />
