@@ -1,14 +1,22 @@
-import styles from './select.module.css';
+import styles from './Select.module.css';
 
-import React from 'react';
 import PropTypes from 'prop-types';
 
 function Select(props) {
-  return <div></div>;
+  return (
+    <select>
+      <options></options>
+    </select>
+  );
 }
 
 Select.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string),
+  items: PropTypes.oneOfType(
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(
+      PropTypes.shape({ value: PropTypes.string, text: PropTypes.string }),
+    ),
+  ),
 };
 
 export default Select;
