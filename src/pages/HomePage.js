@@ -4,6 +4,7 @@ import Container from '../components/UI/Container';
 import MainTitle from '../components/UI/Typografy/title';
 import ApartmentsFilter from '../components/homepage/apartments-filterr';
 import { getApartments } from '../services/apartment.service';
+import debounce from 'lodash.debounce';
 
 export default class HomePage extends Component {
   state = {
@@ -33,7 +34,9 @@ export default class HomePage extends Component {
     return (
       <main className="homepage">
         <Container>
-          <ApartmentsFilter handleChange={this.filterApartmentsByPrice} />
+          <ApartmentsFilter
+            handleChange={debounce(this.filterApartmentsByPrice, 200)}
+          />
           <MainTitle>Подборка согласо выбору</MainTitle>
           <ProductList items={currentApartments} />
         </Container>

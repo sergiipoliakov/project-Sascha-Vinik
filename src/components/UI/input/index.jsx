@@ -7,9 +7,6 @@ class Input extends Component {
   state = {
     id: nanoid(),
   };
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps);
-  }
 
   render() {
     const { name, type, label, className, ...restProps } = this.props;

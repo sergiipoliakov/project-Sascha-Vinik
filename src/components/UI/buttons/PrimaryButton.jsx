@@ -2,8 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Buttons.module.css';
 
-function PrimaryButton({ children, className, ...restProps }) {
-  const classList = [className, styles.button].join(' ');
+const colors = ['success', 'alert', 'warning'];
+
+const colorsMap = {
+  default: styles.buttonDefaault,
+};
+
+const outlinedColorsMap = {
+  default: styles.buttonDefaault,
+};
+function PrimaryButton({ children, className, color, outlined, ...restProps }) {
+  const colorStyle = outlined ? outlinedColorsMap[color] : colorsMap[color];
+
+  const classList = [className, styles.button, colorStyle].join(' ');
   return (
     <button className={classList} {...restProps}>
       {children}
@@ -13,10 +24,14 @@ function PrimaryButton({ children, className, ...restProps }) {
 
 PrimaryButton.defaultProps = {
   className: '',
+  color: 'default',
+  outlined: false,
 };
 
 PrimaryButton.propTypes = {
   className: PropTypes.string,
+  color: PropTypes.string,
+  outlined: PropTypes.bool,
 };
 
 export default PrimaryButton;
