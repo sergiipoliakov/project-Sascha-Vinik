@@ -31,6 +31,7 @@ export default class HomePage extends Component {
   };
 
   async componentDidMount() {
+    console.log(this.props);
     const { data } = await getApartments();
     const cities = [
       ...new Set([...data.map(apartment => apartment.location.city)]),

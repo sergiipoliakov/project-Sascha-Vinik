@@ -7,6 +7,7 @@ import PrimaryButton from '../../UI/buttons/PrimaryButton.jsx';
 import Title from '../../UI/Typografy/title/index.jsx';
 import AuthSection from '../auth-section';
 import { loginUser } from '../../../services/auth.services';
+import { paths } from '../../../Router/Router.jsx';
 
 export default class Login extends Component {
   state = {
@@ -18,11 +19,14 @@ export default class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    try {
-      await loginUser(this.state.formData);
-    } catch (error) {
-      console.error(error);
-    }
+    console.log(this.props.history);
+    this.props.history.replace(paths.MAIN);
+
+    // try {
+    //   await loginUser(this.state.formData);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   handleInputChange = e => {
