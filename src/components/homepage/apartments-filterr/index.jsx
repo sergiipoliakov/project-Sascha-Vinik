@@ -4,27 +4,31 @@ import Button from '../../UI/buttons/PrimaryButton';
 import Select from '../../UI/select';
 import styles from './ApartmentsFilter.module.css';
 
-const citis = [
-  {
-    value: 'Kyiv',
-    text: 'Kyiv',
-  },
-  'eqeqwe',
-  'erwrwer',
-];
-
-const index = ({ handleChange }) => {
+const ApartmentsFilter = ({ handleChange, handleCityChange, cities }) => {
   return (
     <div className={styles.apartmentsFilter}>
-      <Select items={citis} />
-      <Input placeholder="Цена от" onChange={handleChange} />
+      <div className={styles.apartmentsActions}>
+        <Select
+          onInput={handleCityChange}
+          className={styles.apartmentsSelect}
+          items={cities}
+        />
+        <Input
+          className={styles.apartmentsInpiut}
+          placeholder="Цена от"
+          onChange={handleChange}
+        />
+      </div>
+
       <Button>Подбор жилья</Button>
     </div>
   );
 };
 
-index.propTypes = {
+ApartmentsFilter.propTypes = {
   handleChange: PropTypes.func,
+  handleCityChange: PropTypes.func,
+  cities: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default index;
+export default ApartmentsFilter;

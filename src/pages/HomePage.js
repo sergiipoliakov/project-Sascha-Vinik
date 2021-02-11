@@ -10,6 +10,8 @@ export default class HomePage extends Component {
   state = {
     apartments: [],
     filterPrice: 0,
+    cities: [],
+    filterCity: '',
   };
 
   filterApartmentsByPrice = event => {
@@ -20,22 +22,44 @@ export default class HomePage extends Component {
     }));
   };
 
+  handleCityChange = event => {
+    const { value = '' } = event.target;
+    if (!value) return;
+
+    this.setState(() => ({
+      filterCity: value,
+    }));
+  };
+
   async componentDidMount() {
     const { data } = await getApartments();
-    this.setState(prevState => ({ apartments: data }));
+    const cities = [
+      ...new Set([...data.map(apartment => apartment.location.city)]),
+    ];
+    this.setState(prevState => ({
+      apartments: data,
+      cities,
+    }));
   }
 
   render() {
-    const { apartments, filterPrice } = this.state;
-    const currentApartments = apartments.filter(
-      apartment => apartment.price >= filterPrice,
-    );
+    const { apartments, filterPrice, cities, filterCity } = this.state;
+    const currentApartments = apartments.filter(apartment => {
+      const isHigherPrice = apartment.price >= filterPrice;
+      const isCityMached = filterCity
+        ? apartment.location.city === filterCity
+        : true;
+
+      return isHigherPrice && isCityMached;
+    });
 
     return (
       <main className="homepage">
         <Container>
           <ApartmentsFilter
+            cities={cities}
             handleChange={debounce(this.filterApartmentsByPrice, 200)}
+            handleCityChange={this.handleCityChange}
           />
           <MainTitle>Подборка согласо выбору</MainTitle>
           <ProductList items={currentApartments} />
