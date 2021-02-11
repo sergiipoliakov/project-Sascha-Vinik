@@ -9,6 +9,7 @@ const ApartmentsFilter = ({ handleChange, handleCityChange, cities }) => {
     <div className={styles.apartmentsFilter}>
       <div className={styles.apartmentsActions}>
         <Select
+          defaultValue="Все квартиры"
           onInput={handleCityChange}
           className={styles.apartmentsSelect}
           items={cities}

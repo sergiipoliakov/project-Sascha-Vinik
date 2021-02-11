@@ -24,7 +24,6 @@ export default class HomePage extends Component {
 
   handleCityChange = event => {
     const { value = '' } = event.target;
-    if (!value) return;
 
     this.setState(() => ({
       filterCity: value,

@@ -1,10 +1,16 @@
 import styles from './Select.module.css';
 import PropTypes from 'prop-types';
 
-function Select({ items, className = '', color, ...restProps }) {
+function Select({ items, className = '', defaultValue, color, ...restProps }) {
   const classStyles = [styles.select, className].join(' ');
   return (
     <select className={classStyles} {...restProps}>
+      {defaultValue && (
+        <option value="" key={defaultValue}>
+          {defaultValue}
+        </option>
+      )}
+
       {items.map(item => {
         let text, value;
         if (typeof item === 'string') {
@@ -15,9 +21,12 @@ function Select({ items, className = '', color, ...restProps }) {
           value = item.value;
         }
 
-        return <option value={value}>{text}</option>;
+        return (
+          <option key={value} value={value}>
+            {text}
+          </option>
+        );
       })}
-      <option></option>
     </select>
   );
 }
@@ -34,6 +43,7 @@ Select.propTypes = {
     ]),
   ),
   color: PropTypes.string,
+  defaultValue: PropTypes.string,
 };
 
 export default Select;
