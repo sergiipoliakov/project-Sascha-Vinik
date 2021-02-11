@@ -20,7 +20,6 @@ const Router = () => {
         <Route
           path={paths.LOGIN}
           render={props => {
-            console.log(props);
             return <Login {...props} extraPropName="value" />;
           }}
         />
