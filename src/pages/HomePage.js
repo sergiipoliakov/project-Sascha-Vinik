@@ -5,6 +5,27 @@ import MainTitle from '../components/UI/Typografy/title';
 import ApartmentsFilter from '../components/homepage/apartments-filterr';
 import { getApartments } from '../services/apartment.service';
 import debounce from 'lodash.debounce';
+import { render } from '@testing-library/react';
+
+const asyncComponent = ({ loader, loading }) => {
+  return class AsyncComponent extends Component {
+    state = {
+      component: null,
+    };
+    async componentDidMount() {
+      const { default: loadedComponent } = await loader();
+
+      this.setState({
+        component: loadedComponent,
+      });
+    }
+    render() {
+      const { component: LoadedComponent } = this.state;
+      const { loading: Loading } = this.props;
+      return LoadedComponent ? <LoadedComponent /> : <Loading />;
+    }
+  };
+};
 
 export default class HomePage extends Component {
   state = {
