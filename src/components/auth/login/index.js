@@ -8,6 +8,16 @@ import Title from '../../UI/Typografy/title/index.jsx';
 import AuthSection from '../auth-section';
 import { loginUser } from '../../../services/auth.services';
 import { paths } from '../../../Router/Router.jsx';
+import { UserConsumer } from '../../../context/UserContext';
+import { withUserData } from '../../../context/UserContext';
+import userEvent from '@testing-library/user-event';
+
+const Info = ({ user }) => (
+  <div>
+    Name:{user.name}, age:{user.age}
+  </div>
+);
+const InfoWithUserData = withUserData(Info);
 
 export default class Login extends Component {
   state = {
@@ -19,14 +29,8 @@ export default class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    console.log(this.props.history);
-    this.props.history.replace(paths.MAIN);
 
-    // try {
-    //   await loginUser(this.state.formData);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    this.props.history.replace(paths.MAIN);
   };
 
   handleInputChange = e => {
@@ -40,7 +44,13 @@ export default class Login extends Component {
     return (
       <AuthSection>
         <AuthCard>
-          <Title className={styles.authTitle}>Login</Title>
+          <InfoWithUserData />
+          <UserConsumer>
+            {({ name }) => (
+              <Title className={styles.authTitle}>Login: {name}</Title>
+            )}
+          </UserConsumer>
+
           <form onSubmit={this.handleSubmit}>
             <Input
               name="email"
