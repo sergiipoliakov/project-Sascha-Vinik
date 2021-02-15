@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
-import ProductList from '../components/product/ProductList';
+// import ProductList from '../components/product/ProductList';
 import Container from '../components/UI/Container';
 import MainTitle from '../components/UI/Typografy/title';
 import ApartmentsFilter from '../components/homepage/apartments-filterr';
 import { getApartments } from '../services/apartment.service';
 import debounce from 'lodash.debounce';
-import { render } from '@testing-library/react';
+import asyncComponent from '../components/async-loader';
 
-const asyncComponent = ({ loader, loading }) => {
-  return class AsyncComponent extends Component {
-    state = {
-      component: null,
-    };
-    async componentDidMount() {
-      const { default: loadedComponent } = await loader();
+// import { render } from '@testing-library/react';
 
-      this.setState({
-        component: loadedComponent,
-      });
-    }
-    render() {
-      const { component: LoadedComponent } = this.state;
-      const { loading: Loading } = this.props;
-      return LoadedComponent ? <LoadedComponent /> : <Loading />;
-    }
-  };
-};
+const ProductList = asyncComponent({
+  loader: () => import('../components/product/ProductList'),
+});
 
 export default class HomePage extends Component {
   state = {
@@ -52,7 +38,6 @@ export default class HomePage extends Component {
   };
 
   async componentDidMount() {
-    console.log(this.props);
     const { data } = await getApartments();
     const cities = [
       ...new Set([...data.map(apartment => apartment.location.city)]),
