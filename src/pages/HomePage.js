@@ -6,6 +6,8 @@ import ApartmentsFilter from '../components/homepage/apartments-filterr';
 import { getApartments } from '../services/apartment.service';
 import debounce from 'lodash.debounce';
 import asyncComponent from '../components/async-loader';
+import Tooltip from '../components/UI/Tooltip';
+import MouseTracker from '../components/MouseTracker';
 
 // import { render } from '@testing-library/react';
 
@@ -67,7 +69,23 @@ export default class HomePage extends Component {
             handleChange={debounce(this.filterApartmentsByPrice, 200)}
             handleCityChange={this.handleCityChange}
           />
-          <MainTitle>Подборка согласо выбору</MainTitle>
+
+          <Tooltip>
+            {({ hide }) => (
+              <MainTitle onClick={hide}>Подборка согласо выбору</MainTitle>
+            )}
+          </Tooltip>
+
+          <MouseTracker>
+            {({ x, y }) => (
+              // <Tooltip>
+              <h2>
+                coords: {x}, {y}
+              </h2>
+              // </Tooltip>
+            )}
+          </MouseTracker>
+
           <ProductList items={currentApartments} />
         </Container>
       </main>

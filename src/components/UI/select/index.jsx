@@ -1,4 +1,4 @@
-import styles from './Select.module.css';
+import styles from './select.module.css';
 import PropTypes from 'prop-types';
 
 function Select({ items, className = '', defaultValue, color, ...restProps }) {
