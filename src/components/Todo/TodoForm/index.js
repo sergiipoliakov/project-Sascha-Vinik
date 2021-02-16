@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TodoForm.module.css';
+import { v4 as uuidv } from 'uuid';
 
 export default class TodoForm extends Component {
   state = {
@@ -18,7 +19,7 @@ export default class TodoForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.onSubmit({ ...this.state, id: uuidv() });
   };
   render() {
     return (

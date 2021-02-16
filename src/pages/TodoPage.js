@@ -1,60 +1,45 @@
 import React, { Component } from 'react';
 
 import Container from '../components/UI/Container';
-import Label from '../components/Todo/Label';
 import TodoForm from '../components/Todo/TodoForm';
+import TodoList from '../components/Todo/TodoList';
 
-const styles = {
-  todoItem: {
-    position: 'relative',
-    width: '100%',
-    border: '1px solid #000',
-    borderRadius: '4px',
-    padding: '20px',
-    marginBotton: '15px',
-  },
-  title: {
-    marginTop: 0,
-    color: 'purple',
-  },
-};
-
-const Todo = ({ item }) => {
-  const { title, description, status = 'created' } = item;
-  return (
-    <div style={styles.todoItem}>
-      <Label type={status} />
-      <h2 style={styles.title}>{title}</h2>
-      <p>{description}</p>
-      <div>{status}</div>
-    </div>
-  );
-};
-
-const TodoList = ({ items }) =>
-  items.map(todo => <Todo key={todo.title} item={todo} />);
-
-const mock = [
-  {
-    title: 'Hallo',
-    description: 'To do something',
-    status: 'created',
-  },
-  {
-    title: 'Buy mackbook',
-    description: 'As quick as possible',
-    status: 'completed',
-  },
-];
+const storedItems = localStorage.getItem('todos')
+  ? JSON.parse(localStorage.getItem('todos'))
+  : [];
 
 export default class TodoPage extends Component {
   state = {
-    items: [...mock],
+    items: storedItems,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.items !== this.state.items) {
+      localStorage.setItem('todos', JSON.stringify(this.state.items));
+    }
+  }
+
   addTodo = todo => {
+    this.setState(prevState => {
+      return { items: [...prevState.items, todo] };
+    });
+  };
+
+  deleteTodo = id => {
     this.setState(prevState => ({
-      items: [...prevState.items, todo],
+      items: prevState.items.filter(item => item.id !== id),
+    }));
+  };
+
+  completeTodo = id => {
+    this.setState(prevState => ({
+      items: prevState.items.map(item => {
+        if (item.id === id) {
+          return { ...item, status: 'completed' };
+        }
+
+        return item;
+      }),
     }));
   };
   render() {
@@ -63,7 +48,11 @@ export default class TodoPage extends Component {
       <div>
         <Container>
           <TodoForm onSubmit={this.addTodo} />
-          <TodoList items={items} />
+          <TodoList
+            items={items}
+            onDelete={this.deleteTodo}
+            onComplete={this.completeTodo}
+          />
         </Container>
       </div>
     );
