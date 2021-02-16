@@ -69,22 +69,7 @@ export default class HomePage extends Component {
             handleChange={debounce(this.filterApartmentsByPrice, 200)}
             handleCityChange={this.handleCityChange}
           />
-
-          <Tooltip>
-            {({ hide }) => (
-              <MainTitle onClick={hide}>Подборка согласо выбору</MainTitle>
-            )}
-          </Tooltip>
-
-          <MouseTracker>
-            {({ x, y }) => (
-              // <Tooltip>
-              <h2>
-                coords: {x}, {y}
-              </h2>
-              // </Tooltip>
-            )}
-          </MouseTracker>
+          <MainTitle>Подборка согласо выбору</MainTitle>
 
           <ProductList items={currentApartments} />
         </Container>

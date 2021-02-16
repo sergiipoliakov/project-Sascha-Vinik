@@ -1,0 +1,17 @@
+.label {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  display: inline-block;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.labelCreated {
+  border: 1px solid #000;
+}
+.labelCompleted {
+  background: green;
+  border: 1px solid green;
+  color: white;
+}

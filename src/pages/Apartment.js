@@ -7,7 +7,7 @@ const Apartment = ({ match }) => {
   const { id } = match.params;
   axios
     .get(`https://apt-booking-api.herokuapp.com/apartments/${id}`)
-    .then(res => console.log(res.data));
+    .then(res => {});
   return <Reviews />;
 };
 

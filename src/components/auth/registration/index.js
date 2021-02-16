@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AuthCard from '../auth-card';
 import Input from '../../UI/input';
 import PrimaryButton from '../../UI/buttons/PrimaryButton.jsx';
 import Title from '../../UI/Typografy/title/index.jsx';
 import AuthSection from '../auth-section';
 import styles from './Registration.module.css';
+import { paths } from '../../../Router/Router.jsx';
 
 export default class index extends Component {
   state = {
@@ -64,6 +66,7 @@ export default class index extends Component {
             <PrimaryButton type="submit" className={styles.authButton}>
               Вход
             </PrimaryButton>
+            <Link to={paths.LOGIN}>Login</Link>
           </form>
         </AuthCard>
       </AuthSection>

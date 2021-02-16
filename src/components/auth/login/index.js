@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import AuthCard from '../auth-card';
 import Input from '../../UI/input';
@@ -6,18 +7,9 @@ import styles from './Login.module.css';
 import PrimaryButton from '../../UI/buttons/PrimaryButton.jsx';
 import Title from '../../UI/Typografy/title/index.jsx';
 import AuthSection from '../auth-section';
-import { loginUser } from '../../../services/auth.services';
-import { paths } from '../../../Router/Router.jsx';
-import { UserConsumer } from '../../../context/UserContext';
-import { withUserData } from '../../../context/UserContext';
-import userEvent from '@testing-library/user-event';
 
-const Info = ({ user }) => (
-  <div>
-    Name:{user.name}, age:{user.age}
-  </div>
-);
-const InfoWithUserData = withUserData(Info);
+import { paths } from '../../../Router/Router.jsx';
+import { RouteTransition } from 'react-router-transition';
 
 export default class Login extends Component {
   state = {
@@ -44,12 +36,7 @@ export default class Login extends Component {
     return (
       <AuthSection>
         <AuthCard>
-          <InfoWithUserData />
-          <UserConsumer>
-            {({ name }) => (
-              <Title className={styles.authTitle}>Login: {name}</Title>
-            )}
-          </UserConsumer>
+          <Title className={styles.authTitle}>Login</Title>
 
           <form onSubmit={this.handleSubmit}>
             <Input
@@ -70,6 +57,7 @@ export default class Login extends Component {
             <PrimaryButton type="submit" className={styles.authButton}>
               Вход
             </PrimaryButton>
+            <Link to={paths.REGISTRATION}>Registration</Link>
           </form>
         </AuthCard>
       </AuthSection>
