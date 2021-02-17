@@ -6,8 +6,10 @@ import ApartmentsFilter from '../components/homepage/apartments-filterr';
 import { getApartments } from '../services/apartment.service';
 import debounce from 'lodash.debounce';
 import asyncComponent from '../components/async-loader';
+
 import Tooltip from '../components/UI/Tooltip';
 import MouseTracker from '../components/MouseTracker';
+// import { connect } from 'react-redux';
 
 // import { render } from '@testing-library/react';
 

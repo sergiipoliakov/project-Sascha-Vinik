@@ -10,6 +10,9 @@ const Registration = asyncComponent({
 const Login = asyncComponent({
   loader: () => import('../components/auth/login'),
 });
+const ReduxPage = asyncComponent({
+  loader: () => import('../components/redux-exemple/ReduxPage'),
+});
 
 const HomePage = asyncComponent({
   loader: () => import('../pages/HomePage'),
@@ -27,6 +30,7 @@ export const paths = {
   REGISTRATION: '/registration',
   APARTMENT: id => `/apartment/${id}`,
   TODO: '/todo',
+  REDUX: '/redux',
 };
 
 const Router = () => {
@@ -50,6 +54,7 @@ const Router = () => {
             <Route path={paths.REGISTRATION} component={Registration} />
             <Route path={paths.APARTMENT(':id')} component={ApartmentPage} />
             <Route path={paths.TODO} component={TodoPage} />
+            <Route path={paths.REDUX} component={ReduxPage} />
           </AnimatedSwitch>
         </Suspense>
       </Switch>
