@@ -3,6 +3,7 @@ import userReduser from './userReduser';
 import apartmentsReduser from './apartmentsReduser';
 import { setItem as saveItemToStorage } from '../services/clientStorege';
 import throttle from 'lodash.throttle';
+
 const store = configureStore({
   reducer: {
     user: userReduser,

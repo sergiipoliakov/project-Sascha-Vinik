@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
-
 import { Provider } from 'react-redux';
 import './index.css';
-import store from './redux/store';
 import App from './App';
 
-// const reducer = (state = { name: 'Jone', age: 10 }, action) => state;
+/**
+ * Стор без тулкита
+ * import store from './redux/storeWithoutReduxToolkit/store';
+ */
+import store from './redux/store';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 import AuthCard from '../auth-card';
 import Input from '../../UI/input';
@@ -10,8 +11,14 @@ import AuthSection from '../auth-section';
 
 import { paths } from '../../../Router/Router.jsx';
 import { RouteTransition } from 'react-router-transition';
+/*
+Метод без редакс тулкита
+import { getSessionOperation as loginUser } from '../../../redux/storeWithoutReduxToolkit/operations';
+*/
+import { loginUser } from '../../../redux/userReduser';
+import { removeApartment } from 'redux/apartmentsReduser';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     formData: {
       login: '',
@@ -21,8 +28,14 @@ export default class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    const { getSessionOperation } = this.props;
 
-    this.props.history.replace(paths.MAIN);
+    try {
+      await getSessionOperation(this.state.formData);
+      this.props.history.replace(paths.MAIN);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleInputChange = e => {
@@ -64,3 +77,9 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  getSessionOperation: payload => dispatch => dispatch(loginUser(payload)),
+};
+
+export default connect(null, mapDispatchToProps)(Login);
