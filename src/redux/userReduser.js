@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getItem as getItemFromStorage } from '../services/clientStorege';
 
-const initialState = {
-  name: '',
-  age: '',
-};
+const initialState = getItemFromStorage();
 
 const slice = createSlice({
   name: 'user',
