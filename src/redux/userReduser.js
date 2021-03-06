@@ -1,29 +1,24 @@
-import { types } from './actions';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: {
-    name: '',
-    age: '',
+  name: '',
+  age: '',
+};
+
+const slice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    changeName(state, action) {
+      state.name = action.payload;
+    },
+    changeAge(state, action) {
+      state.age = action.payload;
+    },
   },
-  notes: {},
-};
-const reduser = (state = initialState, action) => {
-  switch (action.type) {
-    case types.CHANGE_NAME:
-      return {
-        ...state,
+});
+console.log(slice.actions.changeName.toString());
 
-        name: action.payload,
-      };
-    case types.CHANGE_AGE:
-      return {
-        ...state,
+export const { changeName, changeAge } = slice.actions;
 
-        age: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export default reduser;
+export default slice.reducer;
