@@ -1,6 +1,7 @@
 import { userEffect } from 'react';
 import Router from './Router/Router.jsx';
 import Footer from './components/footer';
+import Header from './components/Header';
 import { useDispatch } from 'react-redux';
 import { loginUser } from './redux/userReduser';
 // import withIcon from './hocs/WithIcon';
@@ -27,6 +28,7 @@ function App({ auth }) {
   // });
   return (
     <div className="app-wrapper">
+      <Header />
       <div className="app-content">
         {/* <TitleWithIconWithToggle /> */}
         <Router />

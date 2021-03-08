@@ -1,0 +1,18 @@
+@value colors: '../../assets/styles/variables/colors.css';
+@value bgColor from colors;
+
+.header {
+  padding: 15px 0;
+  margin-bottom: 25px;
+  background: bgColor;
+  color: #fff;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}

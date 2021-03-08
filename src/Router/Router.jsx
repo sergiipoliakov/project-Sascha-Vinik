@@ -61,7 +61,7 @@ const Router = () => {
             exact={route.exact}
             component={route.component}
             isLoginRequired={route.isLoginRequired}
-            // logoutRequired={route.logoutRequired}
+            logoutRequired={route.logoutRequired}
           />
         ))}
       </Switch>
