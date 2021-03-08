@@ -9,7 +9,7 @@ import PrimaryButton from '../../UI/buttons/PrimaryButton.jsx';
 import Title from '../../UI/Typografy/title/index.jsx';
 import AuthSection from '../auth-section';
 
-import { paths } from '../../../Router/Router.jsx';
+import paths from '../../../Router/routerPaths';
 import { RouteTransition } from 'react-router-transition';
 /*
 Метод без редакс тулкита

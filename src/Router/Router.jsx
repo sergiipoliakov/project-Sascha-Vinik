@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import asyncComponent from '../components/async-loader';
-import { AnimatedSwitch } from 'react-router-transition';
+import RouteWithGuard from './RouteWithGuard';
+import paths from './routerPaths';
 
 const Registration = asyncComponent({
   loader: () => import('../components/auth/registration'),
@@ -10,11 +11,8 @@ const Registration = asyncComponent({
 const Login = asyncComponent({
   loader: () => import('../components/auth/login'),
 });
-const ReduxPage = asyncComponent({
-  loader: () => import('../components/redux-exemple/ReduxPage'),
-});
 
-const HomePage = asyncComponent({
+const Homepage = asyncComponent({
   loader: () => import('../pages/HomePage'),
 });
 
@@ -22,43 +20,53 @@ const TodoPage = asyncComponent({
   loader: () => import('../pages/TodoPage'),
 });
 
-const ApartmentPage = lazy(() => import('../pages/Apartment'));
+const ApartmentsPage = lazy(() => import('../pages/Apartment'));
 
-export const paths = {
-  MAIN: '/',
-  LOGIN: '/login',
-  REGISTRATION: '/registration',
-  APARTMENT: id => `/apartment/${id}`,
-  TODO: '/todo',
-  REDUX: '/redux',
-};
+const routes = [
+  {
+    path: paths.MAIN,
+    component: Homepage,
+    exact: true,
+    isLoginRequired: true,
+  },
+  {
+    path: paths.LOGIN,
+    component: Login,
+    logoutRequired: true,
+  },
+  {
+    path: paths.REGISTRATION,
+    component: Registration,
+    logoutRequired: true,
+  },
+  {
+    path: paths.APARTMENT(':id'),
+    component: ApartmentsPage,
+    isLoginRequired: true,
+  },
+  {
+    path: paths.TODO,
+    component: TodoPage,
+  },
+];
 
 const Router = () => {
   return (
-    <>
+    <Suspense fallback={<h1>loading...</h1>}>
       <Switch>
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <AnimatedSwitch
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
-            className="switch-wrapper"
-          >
-            <Route path={paths.MAIN} exact component={HomePage} />
-            <Route
-              path={paths.LOGIN}
-              render={props => {
-                return <Login {...props} extraPropName="value" />;
-              }}
-            />
-            <Route path={paths.REGISTRATION} component={Registration} />
-            <Route path={paths.APARTMENT(':id')} component={ApartmentPage} />
-            <Route path={paths.TODO} component={TodoPage} />
-            <Route path={paths.REDUX} component={ReduxPage} />
-          </AnimatedSwitch>
-        </Suspense>
+        {routes.map(route => (
+          <RouteWithGuard
+            key={route.path}
+            path={route.path}
+            exact={route.exact}
+            component={route.component}
+            isLoginRequired={route.isLoginRequired}
+            // logoutRequired={route.logoutRequired}
+          />
+        ))}
       </Switch>
-    </>
+    </Suspense>
   );
 };
+
 export default Router;

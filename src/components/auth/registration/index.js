@@ -6,7 +6,7 @@ import PrimaryButton from '../../UI/buttons/PrimaryButton.jsx';
 import Title from '../../UI/Typografy/title/index.jsx';
 import AuthSection from '../auth-section';
 import styles from './Registration.module.css';
-import { paths } from '../../../Router/Router.jsx';
+import paths from '../../../Router/routerPaths';
 
 export default class index extends Component {
   state = {

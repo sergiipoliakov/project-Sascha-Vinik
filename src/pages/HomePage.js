@@ -1,23 +1,13 @@
-import React, { Component } from 'react';
-// import ProductList from '../components/product/ProductList';
+import { Component } from 'react';
+import ProductList from '../components/product/ProductList';
 import Container from '../components/UI/Container';
 import MainTitle from '../components/UI/Typografy/title';
 import ApartmentsFilter from '../components/homepage/apartments-filterr';
 import { getApartments } from '../services/apartment.service';
 import debounce from 'lodash.debounce';
-import asyncComponent from '../components/async-loader';
+import { connect } from 'react-redux';
 
-import Tooltip from '../components/UI/Tooltip';
-import MouseTracker from '../components/MouseTracker';
-// import { connect } from 'react-redux';
-
-// import { render } from '@testing-library/react';
-
-const ProductList = asyncComponent({
-  loader: () => import('../components/product/ProductList'),
-});
-
-export default class HomePage extends Component {
+class Homepage extends Component {
   state = {
     apartments: [],
     filterPrice: 0,
@@ -54,13 +44,14 @@ export default class HomePage extends Component {
 
   render() {
     const { apartments, filterPrice, cities, filterCity } = this.state;
+    const { name } = this.props;
     const currentApartments = apartments.filter(apartment => {
       const isHigherPrice = apartment.price >= filterPrice;
-      const isCityMached = filterCity
+      const isCityMatched = filterCity
         ? apartment.location.city === filterCity
         : true;
 
-      return isHigherPrice && isCityMached;
+      return isHigherPrice && isCityMatched;
     });
 
     return (
@@ -71,11 +62,18 @@ export default class HomePage extends Component {
             handleChange={debounce(this.filterApartmentsByPrice, 200)}
             handleCityChange={this.handleCityChange}
           />
-          <MainTitle>Подборка согласо выбору</MainTitle>
-
+          <MainTitle>Подборка согласно выбора</MainTitle>
           <ProductList items={currentApartments} />
         </Container>
       </main>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    name: state.name,
+  };
+};
+
+export default connect(mapStateToProps)(Homepage);

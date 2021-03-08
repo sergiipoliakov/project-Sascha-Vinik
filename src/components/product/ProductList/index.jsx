@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../ProductCard';
 import styles from './productList.module.css';
-import { paths } from '../../../Router/Router';
+import paths from '../../../Router/routerPaths';
 
 const ProductList = ({ items }) => {
   return (
