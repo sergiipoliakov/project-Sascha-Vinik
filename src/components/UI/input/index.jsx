@@ -1,4 +1,4 @@
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './input.module.css';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';

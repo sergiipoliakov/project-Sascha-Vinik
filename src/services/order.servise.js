@@ -1,21 +1,26 @@
-import confic from '../config';
 import axios from 'axios';
-import clientStorege from './clientStorege';
+import config from '../config';
+import clientStorage from './clientStorage';
 
-export const requestApartmentsOrder = id => {
+const { BASE_URL } = config;
+
+export const requestApartmentsOrder = apartmentId => {
   let token;
+
   try {
-    const token = clientStorege.get('state').session.token;
-  } catch (error) {}
+    token = clientStorage.getItem('state').session.token;
+  } catch (error) {
+    token = '';
+  }
   return axios({
     method: 'POST',
-    url: `https://apt-booking-api.herokuapp.com/orders}`,
+    url: `${BASE_URL}/orders/`,
     data: {
-      id,
+      apartmentId,
       date: new Date(),
     },
     headers: {
-      Autorisation: `Bearar ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 };

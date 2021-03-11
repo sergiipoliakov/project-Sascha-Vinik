@@ -1,25 +1,35 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ApartmentDetails from './details';
 import Reviews from './Reviews';
+import ApartmentsDetails from './details';
+import Container from '../UI/Container';
+import styles from './Apartment.module.css';
 
-function index({ apartment }) {
+function ApartmentPage({ apartment }) {
   if (!apartment) return null;
-  const { rating, title, descr, imgUrl, id } = apartment;
+  const { rating, title, descr, imgUrl, id, reviews } = apartment;
   return (
-    <div>
-      <ApartmentDetails
-        rating={rating}
-        title={title}
-        descr={descr}
-        imgUrl={imgUrl}
-        id={id}
-      />
-      <Reviews />
+    <div className={styles.wrapper}>
+      <Container>
+        <div className={styles.content}>
+          <ApartmentsDetails
+            className={styles.details}
+            id={id}
+            rating={rating}
+            title={title}
+            descr={descr}
+            imgUrl={imgUrl}
+          />
+          {reviews.length !== 0 && (
+            <Reviews items={reviews} className={styles.additionalInfo} />
+          )}
+        </div>
+      </Container>
     </div>
   );
 }
 
-index.propTypes = {};
+ApartmentPage.propTypes = {
+  apartment: PropTypes.object,
+};
 
-export default index;
+export default ApartmentPage;

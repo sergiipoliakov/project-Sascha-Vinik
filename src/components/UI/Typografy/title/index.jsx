@@ -1,4 +1,3 @@
-import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Title.module.css';
 

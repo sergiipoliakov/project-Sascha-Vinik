@@ -5,10 +5,13 @@ import Input from '../../UI/input';
 import PrimaryButton from '../../UI/buttons/PrimaryButton.jsx';
 import Title from '../../UI/Typografy/title/index.jsx';
 import AuthSection from '../auth-section';
-import styles from './Registration.module.css';
 import paths from '../../../Router/routerPaths';
+import styles from './Registration.module.css';
+import { registerUser } from '../../../redux/userReduser';
+import { connect } from 'react-redux';
+import { isAsyncThunkAction } from '@reduxjs/toolkit';
 
-export default class index extends Component {
+class Registration extends Component {
   state = {
     formData: {
       name: '',
@@ -20,6 +23,13 @@ export default class index extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { formData } = this.state;
+    const { name, email, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
+      alert('not correctPassword');
+      return;
+    }
     console.log(this.state.formData);
   };
 
@@ -73,3 +83,11 @@ export default class index extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  register: payload => dispatch(registerUser()),
+});
+
+export default connect(null, mapDispatchToProps)(Registration);

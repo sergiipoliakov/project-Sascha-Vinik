@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from './Buttons.module.css';
 
-const colors = ['success', 'alert', 'warning'];
-
 const colorsMap = {
   default: styles.buttonDefault,
   success: styles.buttonSuccess,

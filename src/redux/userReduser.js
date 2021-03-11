@@ -1,11 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getItem as getItemFromStorage } from '../services/clientStorege';
+import { getItem as getItemFromStorage } from '../services/clientStorage';
 import { loginUser as login } from '../services/auth.services';
+import { loginUser as register } from '../services/auth.services';
 
 const persistData = getItemFromStorage() ?? {};
 
 const initialState = {
-  session: {},
+  session: {
+    user: null,
+    token: '',
+  },
   error: null,
   pending: false,
 };
@@ -14,6 +18,14 @@ export const loginUser = createAsyncThunk(
   'user',
   async ({ email, password }) => {
     const { data } = await login({ email, password });
+    return data;
+  },
+);
+
+export const registerUser = createAsyncThunk(
+  'user',
+  async ({ name, email, password }) => {
+    const { data } = await register({ email, password });
     return data;
   },
 );
@@ -43,6 +55,17 @@ const slice = createSlice({
     },
     [loginUser.pending]: state => {
       state.pending = true;
+    },
+    [registerUser.fulfilled]: (state, { payload }) => {
+      state.session = payload;
+      state.registrationPending = false;
+    },
+    [registerUser.error]: (state, { payload }) => {
+      state.registrationError = payload;
+      state.registrationPending = false;
+    },
+    [registerUser.pending]: state => {
+      state.registrationPending = true;
     },
   },
 });

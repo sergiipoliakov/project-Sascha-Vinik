@@ -9,7 +9,7 @@ export const setItem = payload => {
 export const getItem = () => {
   try {
     const serializedData = localStorage.getItem('state');
-    return serializedData ? JSON.parse(serializedData) : undefined;
+    return JSON.parse(serializedData);
   } catch (error) {
     return undefined;
   }
@@ -19,4 +19,5 @@ const clientStorage = {
   setItem,
   getItem,
 };
+
 export default clientStorage;
