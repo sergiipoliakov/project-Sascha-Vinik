@@ -14,3 +14,9 @@ export const getItem = () => {
     return undefined;
   }
 };
+
+const clientStorage = {
+  setItem,
+  getItem,
+};
+export default clientStorage;
