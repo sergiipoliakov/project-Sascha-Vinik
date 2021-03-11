@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import Rating from '../../Rating';
+import MainTitle from '../../UI/Typografy/title';
 import styles from '.';
 import Container from '../../UI/Container';
-import MainTitle from '../../UI/Typografy/title';
-import Rating from '../../Rating';
 import Button from '../../UI/buttons/PrimaryButton';
 import { requestApartmentsOrder } from 'services/order.servise';
 
@@ -20,7 +19,7 @@ function index({ rating, title, descr, imgUrl, className = '', id }) {
   return (
     <section>
       <Container>
-        <div>
+        <div cla>
           <MainTitle>{title}</MainTitle>
           <Rating rating={rating} />
         </div>

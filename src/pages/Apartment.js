@@ -3,6 +3,7 @@ import React, { Component, useState, useEffect } from 'react';
 import Reviews from '../components/apartments/Reviews';
 
 import { fetchApartmenById } from '../services/apartment.service.js';
+
 import ApartmentView from '../components/apartments';
 // class Apartment extends Component {
 //   state = {
@@ -46,22 +47,9 @@ const Apartment = ({ match }) => {
       }
     };
     asyncRequest();
-  }, [match.paprams]);
+  }, [match.params]);
 
-  //   axios
-  //     .get(`https://apt-booking-api.herokuapp.com/apartments/${id}`)
-  //     .then(res => {});
-
-  return (
-    <div>
-      {apartmentsData && <h1>rating{apartmentsData.rating}</h1>}
-      <div>
-        <ApartmentView apartment={apartmentsData} />
-      </div>
-
-      <Reviews />
-    </div>
-  );
+  return <ApartmentView apartment={apartmentsData} />;
 };
 
 export default Apartment;

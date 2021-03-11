@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ApartmentDetails from './details';
+import Reviews from './Reviews';
 
 function index({ apartment }) {
-  console.log(apartment);
   if (!apartment) return null;
   const { rating, title, descr, imgUrl, id } = apartment;
   return (
@@ -15,7 +15,7 @@ function index({ apartment }) {
         imgUrl={imgUrl}
         id={id}
       />
-      <p>qeqeqw</p>
+      <Reviews />
     </div>
   );
 }

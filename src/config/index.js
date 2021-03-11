@@ -1,3 +1,5 @@
 const settings = {
-  baseURL: 'https://apt-booking-api.herokuapp.com',
+  BASE_URL: 'https://apt-booking-api.herokuapp.com',
 };
+
+export default settings;
