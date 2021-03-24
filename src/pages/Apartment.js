@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import Reviews from '../components/apartments/Reviews';
+// import Reviews from '../components/apartments/Reviews';
 
 import { fetchApartmenById } from '../services/apartment.service.js';
 

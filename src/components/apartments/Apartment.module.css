@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.photo {
+  max-width: 100%;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details {
+  margin-right: 25px;
+}
+
+.additionalInfo {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 350px;
+}
